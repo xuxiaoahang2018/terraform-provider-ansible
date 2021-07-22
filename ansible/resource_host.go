@@ -14,7 +14,7 @@ func resourceHost() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"inventory_hostname": {
 				Type:     schema.TypeString,
-				Required: true,
+				Optional: true,
 				ForceNew: true,
 			},
 
@@ -41,7 +41,10 @@ func resourceHost() *schema.Resource {
 }
 
 func resourceHostCreate(d *schema.ResourceData, meta interface{}) error {
+	if d.Get("inventory_hostname").(string) == "" {
+		d.SetId("NoneIpValue")
+		return nil
+	}
 	d.SetId(d.Get("inventory_hostname").(string))
-
 	return nil
 }

@@ -29,7 +29,7 @@ func TestAnsibleHost(t *testing.T) {
 
 var testAnsibleHostConfig = `
 resource "ansible_host" "test" {
-	inventory_hostname = "example.medstack.net"
+	inventory_hostname = ""
 	groups = ["dbservers"]
 	vars = {
 		"first" = "foo"
