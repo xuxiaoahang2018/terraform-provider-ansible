@@ -41,7 +41,7 @@ func resourceHost() *schema.Resource {
 }
 
 func resourceHostCreate(d *schema.ResourceData, meta interface{}) error {
-	if d.Get("inventory_hostname").(string) == "" {
+	if v, ok := d.GetOk("inventory_hostname"); !ok || v.(string) == "" {
 		d.SetId("NoneIpValue")
 		return nil
 	}
